@@ -9,21 +9,24 @@
  ## local installation 
 Either you can download the .exe release https://github.com/AdarshRawat1/Personal-Voice-Assistant/releases or locally run the code yourself.
 
-## To locally run the code 
- ### Prequisite 
-    [x] Install Python 
-    [x] Add python to `path` 
-    [x] Check if `pip` is working 
-    [x] Install git bash 
+### To locally run the code 
+ ## Prequisite 
+    👻 Install Python 
+    👻 Add python to `path` 
+    👻 Check if `pip` is working 
+    👻 Install git bash 
 
- ### Steps 
-    - Clone the repository to your system using following command in git bash 
-    git clone  https://github.com/AdarshRawat1/Personal-Voice-Assistant.git
+ ## Steps  
+   - Clone the repository to your system using following command in git bash 
 
-    - Now open cmd in this folder and run following command 
-     pip install -r requirements.txt
+            git clone  https://github.com/AdarshRawat1/Personal-Voice-Assistant.git 
 
-    - Run the code 
-     python main.py
+   - Now open cmd in this folder and run following command
+    
+            pip install -r requirements.txt
+
+   - Run the code 
+  
+           python main.py 
 
   
