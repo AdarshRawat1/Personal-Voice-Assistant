@@ -11,10 +11,10 @@ Either you can download the .exe release https://github.com/AdarshRawat1/Persona
 
 ## To locally run the code 
  ### Prequisite 
-    [x] Install Python 
-    [x] Add python to `path` 
-    [x] Check if `pip` is working 
-    [x] Install git bash 
+    👻 Install Python 
+    👻 Add python to `path` 
+    👻 Check if `pip` is working 
+    👻 Install git bash 
 
  ### Steps 
     - Clone the repository to your system using following command in git bash 
