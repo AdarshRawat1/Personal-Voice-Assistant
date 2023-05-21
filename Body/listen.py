@@ -13,8 +13,7 @@ def listen(audio):
 
     try :
         print ("Recognising..")
-        query= r.recognize_google(audio, language='hi-in')  
-        print("you said", query)      
+        query= r.recognize_google(audio, language='hi-in')       
 
     except:
         return "Say Again"
