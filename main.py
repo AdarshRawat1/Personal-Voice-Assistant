@@ -1,7 +1,4 @@
-#make alarm 
-#automate youtube commands - https://www.youtube.com/watch?v=rgGDTO8g2Pg
-
-
+#make alarm https://www.youtube.com/watch?v=rgGDTO8g2Pg
 import speech_recognition as sr  # pip install speechRecognition
 import datetime
 import wikipedia  # pip install wikipedia
@@ -91,13 +88,31 @@ if __name__ == "__main__":
             query=str(query.replace("search",""))
             pywhatkit.search(f"{query} Graphic Era Hill University")
         
-        
-        elif 'youtube' in query or 'play' in query:
+        elif 'youtube' in query or 'play a video' in query:
             query=query.replace("youtube","")
             query=query.replace("play","")
             web=f"https://www.youtube.com/results?search_query={query}"
             speak("This is what I found on Youtube")
             webbrowser.open(web)
+        
+        # Youtube Commands
+        elif 'pause' in query:
+            pyautogui.press('k')
+            speak("Video Paused")
+
+        elif 'resume' in query or 'play' in query:
+            pyautogui.press('k')
+            speak("Video Played")
+
+        elif 'mute video' in query:
+            pyautogui.press('m')
+            speak("Video Muted")
+
+        elif 'volume up' in query:
+            pyautogui.press("up", presses=5)
+
+        elif 'volume down' in query:
+            pyautogui.press('down',presses=5)
 
         #Opening Sites
 
@@ -126,9 +141,6 @@ if __name__ == "__main__":
  
         elif 'new desktop' in query:
             pyautogui.hotkey('ctrl','win','d')
-        
-        elif 'quick setting' in query or 'quick settings' in query:
-            pyautogui.hotkey('ctrl','a')
 
         elif 'change layout' in query or 'snap layout' in query :
             pyautogui.hotkey('win','z')
@@ -179,7 +191,6 @@ if __name__ == "__main__":
             pyautogui.sleep(0.2)
             pyautogui.press("Enter")
             
-
         #Switching Language
         elif 'switch language' in query or 'change language' in query or 'भाषा बदलें' in query:
             if lang == 'en-in':
