@@ -1,11 +1,19 @@
+#make alarm 
+#automate youtube commands - https://www.youtube.com/watch?v=rgGDTO8g2Pg
+
+
 import speech_recognition as sr  # pip install speechRecognition
 import datetime
 import wikipedia  # pip install wikipedia
 import webbrowser
 import os
+import pywhatkit #for google search
+import pyautogui #for shortcut
+import speedtest
 
 from Body.listen import Mic
 from Body.speak import speak
+# from Body.task import task
 
 Voice_ID_English=int(3)
 Voice_ID_Hindi=int(1)
@@ -54,6 +62,7 @@ if __name__ == "__main__":
     while True:
         # if 1:
         query = takeCommand()
+        query=query.lower()
 
         # Logic for executing tasks based on query
         if 'wikipedia' in query:
@@ -63,17 +72,34 @@ if __name__ == "__main__":
             speak("According to Wikipedia")
             print(results)
             speak(results)
+
+        elif 'bing' in query.lower():
+            query= query.replace("bing","")
+            query= query.replace("search","")
+            pyautogui.press("super")
+            pyautogui.typewrite(query)
+            pyautogui.sleep(0)
+            pyautogui.press("Enter")
+
+        elif 'google' in query or 'search' in query.lower():
+            query=str(query.replace("google",""))
+            query=str(query.replace("search",""))
+            pywhatkit.search(query)
+            
+        elif 'how far is' in query:
+            query=str(query.replace("google",""))
+            query=str(query.replace("search",""))
+            pywhatkit.search(f"{query} Graphic Era Hill University")
         
-        elif 'take a break' in query:
-            speak("ok sir , you can call me anytime")
-            speak("Just say Alfa to get my assistent")
-            break
+        
+        elif 'youtube' in query or 'play' in query:
+            query=query.replace("youtube","")
+            query=query.replace("play","")
+            web=f"https://www.youtube.com/results?search_query={query}"
+            speak("This is what I found on Youtube")
+            webbrowser.open(web)
 
-        elif 'open youtube' in query:
-            webbrowser.open("youtube.com")
-
-        elif 'open google' in query:
-            webbrowser.open("google.com")
+        #Opening Sites
 
         elif 'open github' in query:
             webbrowser.open("github.com")
@@ -81,24 +107,80 @@ if __name__ == "__main__":
         elif 'gpt' in query:
             webbrowser.open("chat.openai.com")
 
-        elif 'play music' in query:
-            music_dir = '"C:\\Users\\Alfa\\Music"'
-            songs = os.listdir(music_dir)
-            print(songs)
-            os.startfile(os.path.join(music_dir, songs[0]))
+        #Browser control 
+        elif 'open new tab' in query :
+            pyautogui.hotkey("ctrl","t")
+        
+        elif 'close tab' in query:
+            pyautogui.hotkey('ctrl','f4')
 
+        # #Window Control 
+        elif 'show task' in query :
+            pyautogui.hotkey('win','tab')
+        
+        elif 'list task' in query:
+            pyautogui.hotkey('ctrl','shift','esc')
+
+        elif 'close window' in query :
+            pyautogui.hotkey('alt','f4')
+ 
+        elif 'new desktop' in query:
+            pyautogui.hotkey('ctrl','win','d')
+        
+        elif 'quick setting' in query or 'quick settings' in query:
+            pyautogui.hotkey('ctrl','a')
+
+        elif 'change layout' in query or 'snap layout' in query :
+            pyautogui.hotkey('win','z')
+
+     #Functionality 
+        elif 'open clipboard' in query or 'open clip board' in query:
+            pyautogui.hotkey('win','prtscr')
+ 
+        elif 'internet speed' in query or 'speed test' in query:
+            speak("Please wait ! while I calculate upload and download speed")
+            wifi= speedtest.Speedtest()
+            upload_speed=float(f'{wifi.upload()/(1024*1024):.2f}')   # 1MB = 1024 * 1024 bytes
+            download_speed=float(f'{wifi.download()/(1024*1024):.2f}')
+            
+            print(f"Wifi Download Speed > {download_speed} ")
+            print(f"Wifi upload Speed > {upload_speed}")
+            speak(f"Wifi Download Speed > {download_speed} MB")
+            speak(f"Wifi upload Speed > {upload_speed} MB")
+
+
+        elif 'take screenshot' in query or 'capture screenshot' in query:
+             speak("Sir, tell me the name of this screenshot file")
+             name=takeCommand().lower()
+             speak("Sir, Please hold the screen . I'll be taking a screenshot")
+             img=pyautogui.screenshot()
+             img.save(f'ScreenShot/{name}.png')
+             speak("I am done sir, Screenshot is saved in ScreenShot folder")
+
+
+        #Date ,time and day
         elif 'time' in query:
-            strTime = datetime.datetime.now().strftime("%H:%M:%S")
+            strTime = datetime.datetime.now().strftime("%H:%M")
             speak(f"Sir, the time is {strTime}")
 
-        elif 'open code' in query:
-            codePath = "A:\\Microsoft VS Code\\Code.exe"
-            os.startfile(codePath)
+        elif 'date' in query:
+            date=datetime.datetime.today()
+            speak(date)
 
-        elif 'open dev c' in query:
-            codePath = "A:\\Dev-Cpp\\devcpp.exe"
-            os.startfile(codePath)
+        elif 'day' in query :
+            day= datetime.datetime.now().strftime("%A")
+            speak(f"Sir today it is {day}")
 
+        #Opening Applications 
+        elif 'open' in query:
+            query= query.replace("open","")
+            pyautogui.press("super")
+            pyautogui.typewrite(query)
+            pyautogui.sleep(0.2)
+            pyautogui.press("Enter")
+            
+
+        #Switching Language
         elif 'switch language' in query or 'change language' in query or 'भाषा बदलें' in query:
             if lang == 'en-in':
                 lang = 'hi-in'
@@ -107,10 +189,11 @@ if __name__ == "__main__":
                 lang = 'en-in'
                 speak('Using English as mode of communication',Voice_ID_English)
 
-        elif "exit" in query.lower() or "sleep" in query.lower() or "so ja" in query.lower():
+        elif "exit" in query.lower() or "sleep" in query.lower() or "so ja" in query.lower() or 'take a break' in query:
             if lang =='en-in':
                 speak('I will be signing off sir , shutting down in 3, 2, 1...... beep',Voice_ID_English)
             else:
                 speak('अपना ध्यान रखिए म जा रही हूं। उम्मीद है आप मुझे पुन सेवा का अवसर देंगे',Voice_ID_Hindi)
             exit()
+
 
