@@ -4,7 +4,7 @@ engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
 engine.setProperty('rate', 190)  # used to change the pace of voice
 
-def speak(audio,voice_id=1):
+def speak(audio,voice_id=3):
     engine.setProperty('voice', voices[voice_id].id)
     engine.say(audio)
     engine.runAndWait()

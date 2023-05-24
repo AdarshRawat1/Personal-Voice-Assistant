@@ -69,7 +69,7 @@ if __name__ == "__main__":
             print(results)
             speak(results)
 
-        elif 'bing' in query.lower():
+        elif 'bing' in query:
             query= query.replace("bing","")
             query= query.replace("search","")
             pyautogui.press("super")
@@ -87,7 +87,7 @@ if __name__ == "__main__":
             query=str(query.replace("search",""))
             pywhatkit.search(f"{query} Graphic Era Hill University")
         
-        elif 'youtube' in query or 'play a video' in query:
+        elif 'on youtube' in query or 'play a video' in query:
             query=query.replace("youtube","")
             query=query.replace("play","")
             web=f"https://www.youtube.com/results?search_query={query}"
@@ -159,14 +159,13 @@ if __name__ == "__main__":
             speak(f"Wifi Download Speed > {download_speed} MB")
             speak(f"Wifi upload Speed > {upload_speed} MB")
 
-
-        elif 'take screenshot' in query or 'capture screenshot' in query:
-             speak("Sir, tell me the name of this screenshot file")
-             name=takeCommand().lower()
-             speak("Sir, Please hold the screen . I'll be taking a screenshot")
-             img=pyautogui.screenshot()
-             img.save(f'ScreenShot/{name}.png')
-             speak("I am done sir, Screenshot is saved in ScreenShot folder")
+        elif 'take a screenshot' in query or 'capture screenshot' in query or 'take screenshot' in query:
+            speak("Sir, tell me the name of this screenshot file")
+            name=takeCommand().lower()
+            speak("Sir, Please hold the screen . I'll be taking a screenshot")
+            img=pyautogui.screenshot()
+            img.save(f'ScreenShot/{name}.png')
+            speak("I am done sir, Screenshot is saved in ScreenShot folder")
 
 
         #Date ,time and day
