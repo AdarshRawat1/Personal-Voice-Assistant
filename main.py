@@ -6,6 +6,7 @@ import webbrowser
 import pywhatkit #for google search
 import pyautogui #for shortcut
 import speedtest
+from time import sleep
 
 from Body.listen import Mic
 from Body.speak import speak
@@ -30,7 +31,7 @@ def wishMe():
         speak("अभिवादन, मैं आपकी निजी सहायक, बताइये मैं आपकी क्या मदद कर सकती हूं",Voice_ID_Hindi)
 
 
-def takeCommand():
+def takeCommand(t = 4):
     # It takes microphone input from the user and returns string output
 
     r = sr.Recognizer()
@@ -38,7 +39,7 @@ def takeCommand():
         r.pause_threshold = 1
         r.energy_threshold = 100
         print(f"Listening ... <{lang}>")
-        audio = r.listen(source, 0, 4)
+        audio = r.listen(source, 0, t)
     try:
         if lang=='hi-in':
             query=Mic(audio)
@@ -188,7 +189,29 @@ if __name__ == "__main__":
             pyautogui.typewrite(query)
             pyautogui.sleep(0.2)
             pyautogui.press("Enter")
-            
+
+        #Sending Whatsapp message 
+        elif 'send message' in query:
+            query= query.replace("send message to","")
+            pyautogui.press("super")
+            pyautogui.typewrite("whatsapp")
+            sleep(0.2)
+            pyautogui.press("Enter")
+            sleep(0.2)
+            pyautogui.hotkey("ctrl","f")
+            pyautogui.typewrite(f"{query}")
+            sleep(0.4)
+            pyautogui.press("down")
+
+            sleep(0.1)
+            pyautogui.press("Enter")
+            speak("Sir, What should the message be?")
+            msg=takeCommand(10).lower()
+            pyautogui.typewrite(msg)
+            sleep(0.1)
+            pyautogui.press("Enter")
+            speak("message sent")
+
         #Switching Language
         elif 'switch language' in query or 'change language' in query or 'भाषा बदलें' in query:
             if lang == 'en-in':
