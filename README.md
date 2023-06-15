@@ -28,5 +28,20 @@ Either you can download the .exe release https://github.com/AdarshRawat1/Persona
    - Run the code 
   
            python main.py 
+           
 
-  
+## - Current file structure 
+```  📂 Project 
+├── 📂 body
+│ ├── 📄 automation.py
+│ └── 📄 wish.py
+├── 📂 Controls
+│ └── 📄 control.py
+├── 📂 utils
+│ ├── 📄 listen.py
+│ └── 📄 speak.py
+├── 📄 main.py
+├── 📄 Detection.py
+├── 📄 requirements.txt
+└── 📄 README.md
+```
