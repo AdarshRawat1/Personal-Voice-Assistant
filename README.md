@@ -30,7 +30,7 @@ Either you can download the .exe release https://github.com/AdarshRawat1/Persona
            python main.py 
            
 
-## - Current file structure 
+## Current file structure 
 ```  📂 Project 
 ├── 📂 body
 │ ├── 📄 automation.py
