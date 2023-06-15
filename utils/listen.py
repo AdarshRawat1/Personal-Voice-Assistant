@@ -34,7 +34,3 @@ def Mic(audio):
     query=listen(audio)
     data = TranslateHindiToEnglish(query)
     return data
-
-
-    
-
