@@ -31,7 +31,8 @@ Either you can download the .exe release https://github.com/AdarshRawat1/Persona
            
 
 ## Current file structure 
-```  📂 Project 
+```  
+📂 Project 
 ├── 📂 body
 │ ├── 📄 automation.py
 │ └── 📄 wish.py
