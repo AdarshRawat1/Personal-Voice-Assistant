@@ -5,12 +5,17 @@ import pyautogui #for shortcut
 import speedtest
 import datetime
 
+import sys
+sys.path.append("B:\Ai Assistant\Ai Voice Assistant")
+
 from time import sleep
 from utils.speak import speak
 from Controls.control import Voice_ID_English
 from Controls.control import Voice_ID_Hindi 
-from Controls.control import lang
+import Controls.control as ctr
 from utils.command import takeCommand
+
+
 
 def queryToTask(query):
         if 'wikipedia' in query:
@@ -37,7 +42,8 @@ def queryToTask(query):
         elif 'how far is' in query:
             query=str(query.replace("google",""))
             query=str(query.replace("search",""))
-            pywhatkit.search(f"{query} Graphic Era Hill University")
+            query=str(query.replace("here",""))
+            pywhatkit.search(f"{query} from Graphic Era Hill University google maps")
         
         elif 'on youtube' in query or 'play a video' in query:
             query=query.replace("youtube","")
@@ -98,25 +104,25 @@ def queryToTask(query):
 
      #Functionality 
         elif 'open clipboard' in query or 'open clip board' in query:
-            pyautogui.hotkey('win','prtscr')
+            pyautogui.hotkey('win','v')
  
         elif 'internet speed' in query or 'speed test' in query:
             speak("Please wait ! while I calculate upload and download speed")
-            wifi= speedtest.Speedtest()
+            wifi= speedtest.Speedtest(secure=True)
             upload_speed=float(f'{wifi.upload()/(1024*1024):.2f}')   # 1MB = 1024 * 1024 bytes
             download_speed=float(f'{wifi.download()/(1024*1024):.2f}')
             
             print(f"Wifi Download Speed > {download_speed} ")
             print(f"Wifi upload Speed > {upload_speed}")
-            speak(f"Wifi Download Speed > {download_speed} MB")
-            speak(f"Wifi upload Speed > {upload_speed} MB")
+            speak(f"Wifi Download Speed > {download_speed} MBps")
+            speak(f"Wifi upload Speed > {upload_speed} MBps")
 
         elif 'take a screenshot' in query or 'capture screenshot' in query or 'take screenshot' in query:
             speak("Sir, tell me the name of this screenshot file")
             name=takeCommand().lower()
             speak("Sir, Please hold the screen . I'll be taking a screenshot")
             img=pyautogui.screenshot()
-            img.save(f'ScreenShot/{name}.png')
+            img.save(f'DataStore/ScreenShot/{name}.png')
             speak("I am done sir, Screenshot is saved in ScreenShot folder")
 
 
@@ -151,9 +157,8 @@ def queryToTask(query):
             sleep(0.2)
             pyautogui.hotkey("ctrl","f")
             pyautogui.typewrite(f"{query}")
-            sleep(0.4)
+            sleep(0.9)
             pyautogui.press("down")
-
             sleep(0.1)
             pyautogui.press("Enter")
             speak("Sir, What should the message be?")
@@ -165,15 +170,15 @@ def queryToTask(query):
 
         #Switching Language
         elif 'switch language' in query or 'change language' in query or 'भाषा बदलें' in query:
-            if lang == 'en-in':
-                lang = 'hi-in'
+            if ctr.lang == 'en-in':
+                ctr.lang = 'hi-in'
                 speak("अभिवादन, मैं आपकी निजी सहायक, बताइये मैं आपकी क्या मदद कर सकती हूं",Voice_ID_Hindi)
             else:
-                lang = 'en-in'
+                ctr.lang = 'en-in'
                 speak('Using English as mode of communication',Voice_ID_English)
 
         elif "exit" in query.lower() or "sleep" in query.lower() or "so ja" in query.lower() or 'take a break' in query:
-            if lang =='en-in':
+            if ctr.lang =='en-in':
                 speak('I will be signing off sir , shutting down in 3, 2, 1...... beep',Voice_ID_English)
             else:
                 speak('अपना ध्यान रखिए म जा रही हूं। उम्मीद है आप मुझे पुन सेवा का अवसर देंगे',Voice_ID_Hindi)
