@@ -1,6 +1,6 @@
 import speech_recognition as sr  # pip install speechRecognition
 from utils.listen import Mic
-from Controls.control import lang
+import Controls.control as ctr
 
 def takeCommand(t = 4):
     # It takes microphone input from the user and returns string output
@@ -8,10 +8,10 @@ def takeCommand(t = 4):
     with sr.Microphone() as source:
         r.pause_threshold = 1
         r.energy_threshold = 100
-        print(f"Listening ... <{lang}>")
+        print(f"Listening ... <{ctr.lang}>")
         audio = r.listen(source, 0, t)
     try:
-        if lang=='hi-in':
+        if ctr.lang=='hi-in':
             query=Mic(audio)
         else:
             print("Recognising..")

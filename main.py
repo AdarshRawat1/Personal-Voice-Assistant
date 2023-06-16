@@ -10,7 +10,6 @@ if __name__ == "__main__":
     play_gif()
     wishMe(lang)
     while True:
-        # if 1:
         query = takeCommand()
         query=query.lower()
         queryToTask(query)

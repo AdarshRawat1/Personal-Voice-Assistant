@@ -148,18 +148,19 @@ def queryToTask(query):
             pyautogui.press("Enter")
 
         #Sending Whatsapp message 
-        elif 'send message' in query:
-            query= query.replace("send message to","")
+        elif 'send message' in query or "send a message" in query:
+            query= query.replace("send a message to","")
+            query= query.replace("send message","")
             pyautogui.press("super")
             pyautogui.typewrite("whatsapp")
             sleep(0.2)
             pyautogui.press("Enter")
-            sleep(0.2)
+            sleep(0.5)
             pyautogui.hotkey("ctrl","f")
             pyautogui.typewrite(f"{query}")
-            sleep(0.9)
+            sleep(1.8)
             pyautogui.press("down")
-            sleep(0.1)
+            sleep(0.3)
             pyautogui.press("Enter")
             speak("Sir, What should the message be?")
             msg=takeCommand(10).lower()
@@ -181,5 +182,5 @@ def queryToTask(query):
             if ctr.lang =='en-in':
                 speak('I will be signing off sir , shutting down in 3, 2, 1...... beep',Voice_ID_English)
             else:
-                speak('अपना ध्यान रखिए म जा रही हूं। उम्मीद है आप मुझे पुन सेवा का अवसर देंगे',Voice_ID_Hindi)
+                speak('ध्यान रखना, उम्मीद है कि आप जल्द ही मुझे मदद करने का मौका देंगे',Voice_ID_Hindi)
             exit()
