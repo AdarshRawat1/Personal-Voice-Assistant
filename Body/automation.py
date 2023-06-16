@@ -31,7 +31,7 @@ def queryToTask(query):
             query= query.replace("search","")
             pyautogui.press("super")
             pyautogui.typewrite(query)
-            pyautogui.sleep(0)
+            pyautogui.sleep(0.3)
             pyautogui.press("Enter")
 
         elif 'google' in query or 'search' in query.lower():
@@ -46,8 +46,9 @@ def queryToTask(query):
             pywhatkit.search(f"{query} from Graphic Era Hill University google maps")
         
         elif 'on youtube' in query or 'play a video' in query:
+            query=query.replace("on youtube","")
+            query=query.replace("play a video","")
             query=query.replace("youtube","")
-            query=query.replace("play","")
             web=f"https://www.youtube.com/results?search_query={query}"
             speak("This is what I found on Youtube")
             webbrowser.open(web)

@@ -1,7 +1,6 @@
 import tkinter as tk
 from PIL import Image,ImageTk,ImageSequence
 import time 
-import os
 from pygame import mixer
 mixer.init()
 
