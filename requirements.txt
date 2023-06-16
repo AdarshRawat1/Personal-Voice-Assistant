@@ -4,3 +4,5 @@ SpeechRecognition==3.10.0
 wikipedia==1.4.0
 pywhatkit==5.4
 pyautogui==1.8.2
+Pillow==9.5.0
+pygame==2.4.0

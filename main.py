@@ -1,10 +1,13 @@
-#make alarm https://www.youtube.com/watch?v=rgGDTO8g2Pg
 from Body.wish import wishMe
 from Body.automation import queryToTask
-from utils.listen import takeCommand
+
+from Body.intro import play_gif
+from utils.command import takeCommand
 from Controls.control import lang
 
+
 if __name__ == "__main__":
+    play_gif()
     wishMe(lang)
     while True:
         # if 1:
