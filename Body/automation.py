@@ -4,6 +4,7 @@ import pywhatkit #for google search
 import pyautogui #for shortcut
 import speedtest
 import datetime
+import keyboard
 
 import sys
 sys.path.append("B:\Ai Assistant\Ai Voice Assistant")
@@ -170,6 +171,18 @@ def queryToTask(query):
             pyautogui.press("Enter")
             speak("message sent")
 
+        elif 'gpt' in query or "using artificial intelligence" in query or 'use artificial intelligence' in query or 'use ai' in query or 'using ai' in query:
+            webbrowser.open("chat.openai.com")
+            sleep(5)
+            prompt=" You are an Assistant that helps with my work. Respond in simple, concise sentences (maximum of three sentences). p.s. Respond with salutation and agreement."
+            sleep(2)
+            pyautogui.typewrite(prompt)
+            sleep(0.5)
+            pyautogui.press("Enter")
+            pyautogui.click(1800,900)
+            sleep(1.3)
+            exitCode()
+        
         #Switching Language
         elif 'switch language' in query or 'change language' in query or 'भाषा बदलें' in query:
             if ctr.lang == 'en-in':
@@ -185,3 +198,11 @@ def queryToTask(query):
             else:
                 speak('ध्यान रखना, उम्मीद है कि आप जल्द ही मुझे मदद करने का मौका देंगे',Voice_ID_Hindi)
             exit()
+
+def exitCode():
+        if ctr.lang =='en-in':
+            speak('I will be signing off sir , shutting down in 3, 2, 1...... beep',Voice_ID_English)
+        else:                
+            speak('ध्यान रखना, उम्मीद है कि आप जल्द ही मुझे मदद करने का मौका देंगे',Voice_ID_Hindi)
+        keyboard.press('space')
+        exit()
