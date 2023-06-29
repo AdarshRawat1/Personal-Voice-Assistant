@@ -2,7 +2,7 @@ import speech_recognition as sr  # pip install speechRecognition
 from utils.listen import Mic
 import Controls.control as ctr
 
-def takeCommand(t = 4):
+def takeCommand(t = 5):
     # It takes microphone input from the user and returns string output
     r = sr.Recognizer()
     with sr.Microphone() as source:

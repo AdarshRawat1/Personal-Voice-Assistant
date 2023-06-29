@@ -5,6 +5,7 @@ import pyautogui #for shortcut
 import speedtest
 import datetime
 import keyboard
+import os 
 
 import sys
 sys.path.append("B:\Ai Assistant\Ai Voice Assistant")
@@ -49,7 +50,8 @@ def queryToTask(query):
         elif 'on youtube' in query or 'play a video' in query:
             query=query.replace("on youtube","")
             query=query.replace("play a video","")
-            query=query.replace("youtube","")
+            query=query.replace("youube","")
+            query=query.replace("play","")
             web=f"https://www.youtube.com/results?search_query={query}"
             speak("This is what I found on Youtube")
             webbrowser.open(web)
@@ -59,7 +61,7 @@ def queryToTask(query):
             pyautogui.press('k')
             speak("Video Paused")
 
-        elif 'resume' in query or 'play' in query:
+        elif 'resume' in query:
             pyautogui.press('k')
             speak("Video Played")
 
@@ -85,7 +87,7 @@ def queryToTask(query):
         elif 'open new tab' in query :
             pyautogui.hotkey("ctrl","t")
         
-        elif 'close tab' in query:
+        elif 'close tab' in query or 'closed tab' in query:
             pyautogui.hotkey('ctrl','f4')
 
         # #Window Control 
@@ -95,7 +97,7 @@ def queryToTask(query):
         elif 'list task' in query:
             pyautogui.hotkey('ctrl','shift','esc')
 
-        elif 'close window' in query :
+        elif 'close window' in query or 'closed window' in query:
             pyautogui.hotkey('alt','f4')
  
         elif 'new desktop' in query:
@@ -114,10 +116,10 @@ def queryToTask(query):
             upload_speed=float(f'{wifi.upload()/(1024*1024):.2f}')   # 1MB = 1024 * 1024 bytes
             download_speed=float(f'{wifi.download()/(1024*1024):.2f}')
             
-            print(f"Wifi Download Speed > {download_speed} ")
-            print(f"Wifi upload Speed > {upload_speed}")
-            speak(f"Wifi Download Speed > {download_speed} MBps")
-            speak(f"Wifi upload Speed > {upload_speed} MBps")
+            print(f"Wifi Download Speed > {download_speed}Mb/s")
+            print(f"Wifi upload Speed > {upload_speed} Mb/s")
+            speak(f"Wifi Download Speed > {download_speed} MB per second")
+            speak(f"Wifi upload Speed > {upload_speed} MB per second")
 
         elif 'take a screenshot' in query or 'capture screenshot' in query or 'take screenshot' in query:
             speak("Sir, tell me the name of this screenshot file")
@@ -153,34 +155,38 @@ def queryToTask(query):
         elif 'send message' in query or "send a message" in query:
             query= query.replace("send a message to","")
             query= query.replace("send message","")
+            query= query.replace("send a message","")
+            query= query.replace("to","")
             pyautogui.press("super")
             pyautogui.typewrite("whatsapp")
             sleep(0.2)
             pyautogui.press("Enter")
-            sleep(0.5)
+            sleep(2)
             pyautogui.hotkey("ctrl","f")
+            sleep(1)
             pyautogui.typewrite(f"{query}")
-            sleep(1.8)
+            sleep(3)
             pyautogui.press("down")
             sleep(0.3)
             pyautogui.press("Enter")
             speak("Sir, What should the message be?")
             msg=takeCommand(10).lower()
-            pyautogui.typewrite(msg)
-            sleep(0.1)
-            pyautogui.press("Enter")
-            speak("message sent")
+            if (msg!='none'):
+                pyautogui.typewrite(msg)
+                sleep(0.1)
+                pyautogui.press("Enter")
+                speak("message sent")
+            else:
+                speak ("No message was sent")
 
         elif 'gpt' in query or "using artificial intelligence" in query or 'use artificial intelligence' in query or 'use ai' in query or 'using ai' in query:
             webbrowser.open("chat.openai.com")
             sleep(5)
-            prompt=" You are an Assistant that helps with my work. Respond in simple, concise sentences (maximum of three sentences). p.s. Respond with salutation and agreement."
+            prompt="prompt='You are an Assistant that helps with my work. Respond in simple, concise sentences (maximum of two sentences, in one paragraph) , Avoid formatting the text. p.s. Respond with salutation like a assistant.'"
             sleep(2)
             pyautogui.typewrite(prompt)
             sleep(0.5)
             pyautogui.press("Enter")
-            pyautogui.click(1800,900)
-            sleep(1.3)
             exitCode()
         
         #Switching Language
@@ -197,12 +203,20 @@ def queryToTask(query):
                 speak('I will be signing off sir , shutting down in 3, 2, 1...... beep',Voice_ID_English)
             else:
                 speak('ध्यान रखना, उम्मीद है कि आप जल्द ही मुझे मदद करने का मौका देंगे',Voice_ID_Hindi)
+            os.startfile(f'{os.getcwd()}\Detection.py')
+            pyautogui.hotkey('win','m')
             exit()
 
 def exitCode():
         if ctr.lang =='en-in':
-            speak('I will be signing off sir , shutting down in 3, 2, 1...... beep',Voice_ID_English)
+            speak('Initiating Artificial Intelligence',Voice_ID_English)
         else:                
-            speak('ध्यान रखना, उम्मीद है कि आप जल्द ही मुझे मदद करने का मौका देंगे',Voice_ID_Hindi)
+            speak('अब प्रतिक्रिया के लिए कृत्रिम बुद्धिमत्ता का उपयोग किया जा रहा है',Voice_ID_Hindi)
+        os.startfile(f'{os.getcwd()}\Detection.py')
+        sleep(2)
+        pyautogui.hotkey('win','down')
+        sleep(1)
+        pyautogui.click(1800,900)
+        sleep(1.3)
         keyboard.press('space')
         exit()

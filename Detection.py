@@ -8,7 +8,7 @@ def takeCommand():
     r = sr.Recognizer()
     with sr.Microphone() as source:
         print("Listening...")
-        r.pause_threshold = 0.9
+        r.pause_threshold = 1
         r.energy_threshold = 100
         audio = r.listen(source, 0, 3)
 
@@ -26,5 +26,4 @@ while True:
     wake_up=takeCommand()
     if 'wakeup' in wake_up or 'wake up' in wake_up:
         os.startfile(f'{os.getcwd()}\main.py')
-    else :
-        print('nothing...')
+        exit()

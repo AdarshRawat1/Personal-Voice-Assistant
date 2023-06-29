@@ -2,12 +2,15 @@ import tkinter as tk
 from PIL import Image,ImageTk,ImageSequence
 import time 
 from pygame import mixer
+from Body.cli_design import design 
 mixer.init()
 
 import sys
 sys.path.append("B:\Ai Assistant\Ai Voice Assistant")
 gif_path = r'static\assets\gif\Loading.gif'
 audio_path=r'static\assets\audio\intro.mp3'
+
+design()
 
 root=tk.Tk()
 root.geometry("800x600")
