@@ -35,7 +35,7 @@ Either you can download the .exe release https://github.com/AdarshRawat1/Persona
 
    - Press ```win``` + ```r```
    - type ```shell:startup```
-   - copy a shortcut of ```Detection.py```
+   - copy a shortcut of ```Detection.py``` here 
 
 ## Current file structure 
 ```  
