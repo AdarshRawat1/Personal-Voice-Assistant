@@ -1,6 +1,9 @@
 import os
 import speech_recognition as sr
 import keyboard 
+from Body.cli_design import design_Detection
+
+design_Detection()
 
 def takeCommand():
 
@@ -21,14 +24,14 @@ def takeCommand():
     except:
         print("Say that again please...")
         return "None"
-    return query
+    return query.lower()
 
 while True:
     wake_up=takeCommand()
     if 'wakeup' in wake_up or 'wake up' in wake_up:
         os.startfile(f'{os.getcwd()}\main.py')
         exit()
-    if 'rewoke' in wake_up or 'revoke' in wake_up or 'reebook' in wake_up:
+    if 'rewoke' in wake_up or 'revoke' in wake_up or 'reebook' in wake_up or 'rebook' in wake_up or 'reebok' in wake_up:
         keyboard.press('space')
         os.startfile(f'{os.getcwd()}\main.py')
         exit()
