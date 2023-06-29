@@ -2,7 +2,7 @@ import wikipedia  # pip install wikipedia
 import webbrowser
 import pywhatkit #for google search
 import pyautogui #for shortcut
-import speedtest
+from speedtest import Speedtest
 import datetime
 import keyboard
 import os 
@@ -16,7 +16,6 @@ from Controls.control import Voice_ID_English
 from Controls.control import Voice_ID_Hindi 
 import Controls.control as ctr
 from utils.command import takeCommand
-
 
 
 def queryToTask(query):
@@ -110,7 +109,7 @@ def queryToTask(query):
  
         elif 'internet speed' in query or 'speed test' in query:
             speak("Please wait ! while I calculate upload and download speed")
-            wifi= speedtest.Speedtest(secure=True)
+            wifi=Speedtest()
             upload_speed=float(f'{wifi.upload()/(1024*1024):.2f}')   # 1MB = 1024 * 1024 bytes
             download_speed=float(f'{wifi.download()/(1024*1024):.2f}')
             
