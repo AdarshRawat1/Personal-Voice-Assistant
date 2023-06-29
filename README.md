@@ -31,6 +31,12 @@ Either you can download the .exe release https://github.com/AdarshRawat1/Persona
 
    - Give the 'Wakeup' voice command.
 
+## Adding the program to auto run at STARTUP
+
+   - Press ```win``` + ```r```
+   - type ```shell:startup```
+   - copy a shortcut of ```Detection.py```
+
 ## Current file structure 
 ```  
 📂 Project 
