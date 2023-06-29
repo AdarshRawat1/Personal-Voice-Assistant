@@ -2,3 +2,4 @@ Screenshot/*.png
 body/__pycache__
 venv
 __pycache__
+DataStore
