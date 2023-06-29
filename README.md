@@ -34,23 +34,27 @@ Either you can download the .exe release https://github.com/AdarshRawat1/Persona
 ```  
 📂 Project 
 ├── 📂 body
-│ ├── 📄 automation.py
+│	├── 📄 automation.py
+│ ├── 📄 cli_design.py
 │ ├── 📄 intro.py
-│ └── 📄 wish.py
+│	└── 📄 wish.py
 ├── 📂 Controls
 │ └── 📄 control.py
 ├── 📂 DataStore
-│ └── 📂 ScreenShot
+│	├── 📂 Captures
+│	└── 📂 ScreenShot
 ├── 📂 utils
-│ ├── 📄 listen.py
-│ └── 📄 speak.py
+│	├── 📄 command.py
+│	├── 📄 listen.py
+│	└── 📄 speak.py
 ├── 📂 static
-│ └── 📂 audio
-│ │  └──📄 intro.mp3
+│	└── 📂 audio
+│	│  	└──📄 intro.mp3
 │ └── 📂 gif
-│ │  └──📄 loading.gif
+│	│ 	 └──📄 loading.gif
 ├── 📄 main.py
 ├── 📄 Detection.py
 ├── 📄 requirements.txt
 └── 📄 README.md
+
 ```
