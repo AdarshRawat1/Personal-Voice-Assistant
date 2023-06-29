@@ -22,6 +22,7 @@ from utils.command import takeCommand
 def queryToTask(query):
         if 'wikipedia' in query:
             query = query.replace("wikipedia", "")
+            query = query.replace("according to wikipedia", "")
             results = wikipedia.summary(query, sentences=2)
             speak("Searching Wikipedia...")
             speak("According to Wikipedia")
@@ -80,9 +81,6 @@ def queryToTask(query):
         elif 'open github' in query:
             webbrowser.open("github.com")
 
-        elif 'gpt' in query:
-            webbrowser.open("chat.openai.com")
-
         #Browser control 
         elif 'open new tab' in query :
             pyautogui.hotkey("ctrl","t")
@@ -128,6 +126,15 @@ def queryToTask(query):
             img=pyautogui.screenshot()
             img.save(f'DataStore/ScreenShot/{name}.png')
             speak("I am done sir, Screenshot is saved in ScreenShot folder")
+
+        elif 'record screen' in query or 'screen record' in query or 'record the screen' in query:
+            pyautogui.hotkey('win','alt','r')
+            sleep(1)
+            speak("Screen Recording started")
+
+        elif 'stop recording' in query or 'stop capture' in query:
+            pyautogui.click(1800,150)
+            speak("Screen recording saved in Data Store")
 
 
         #Date ,time and day
