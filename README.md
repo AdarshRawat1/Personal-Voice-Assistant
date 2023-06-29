@@ -25,10 +25,11 @@ Either you can download the .exe release https://github.com/AdarshRawat1/Persona
     
             pip install -r requirements.txt
 
-   - Run the code 
+   - Run the Detection code 
   
-           python main.py 
-           
+           python Detetction.py 
+
+   - Give the 'Wakeup' voice command.
 
 ## Current file structure 
 ```  
