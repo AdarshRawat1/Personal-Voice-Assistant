@@ -87,7 +87,7 @@ def queryToTask(query):
         elif 'close tab' in query or 'closed tab' in query:
             pyautogui.hotkey('ctrl','f4')
 
-        # #Window Control 
+     #Window Control 
         elif 'show task' in query :
             pyautogui.hotkey('win','tab')
         
@@ -185,7 +185,7 @@ def queryToTask(query):
             else:
                 speak ("No message was sent")
 
-        elif 'gpt' in query or "using artificial intelligence" in query or 'use artificial intelligence' in query or 'use ai' in query or 'using ai' in query:
+        elif 'gpt' in query or "using artificial intelligence" in query or 'use artificial intelligence' in query or 'use ai' in query or 'using ai' in query or 'artificial intelligence' in query:
             webbrowser.open("chat.openai.com")
             sleep(5)
             prompt="prompt='You are an Assistant that helps with my work. Respond in simple, concise sentences (maximum of two sentences, in one paragraph) , Avoid formatting the text. p.s. Respond with salutation like a assistant.'"
